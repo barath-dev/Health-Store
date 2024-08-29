@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hospital/widgets/medication_tile.dart';
 
 class AddPrescription extends StatefulWidget {
   const AddPrescription({super.key});
@@ -11,12 +12,16 @@ class _AddPrescriptionState extends State<AddPrescription> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          const Text("Add Prescription"),
-          
-        ]
+      appBar: AppBar(
+        title: const Text("Add Prescription"),
       ),
+      body: const SafeArea(
+          minimum: EdgeInsets.all(7.5),
+          left: true,
+          right: true,
+          child: Column(children: [
+            MedicineTile(),
+          ])),
     );
   }
 }
