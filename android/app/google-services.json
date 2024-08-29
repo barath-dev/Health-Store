@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "211126723934",
+    "project_id": "hospital-e4fc6",
+    "storage_bucket": "hospital-e4fc6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:211126723934:android:3ca123d0bf57ca28659bcf",
+        "android_client_info": {
+          "package_name": "com.example.healthstore"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjOqDccyAmvdGUbM8hJmIuQIEwnZ4vZKs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
