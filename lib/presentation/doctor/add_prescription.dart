@@ -10,6 +10,13 @@ class AddPrescription extends StatefulWidget {
 class _AddPrescriptionState extends State<AddPrescription> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Column(
+        children: [
+          const Text("Add Prescription"),
+          
+        ]
+      ),
+    );
   }
 }

@@ -22,15 +22,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      // ignore: unnecessary_null_comparison
-      home: SharedPrefs.getAuthToken() == null
-          ? const LoginScreen()
-          : const DocHomeScreen(),
-    );
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        // ignore: unnecessary_null_comparison
+        home: DocHomeScreen());
   }
 }
