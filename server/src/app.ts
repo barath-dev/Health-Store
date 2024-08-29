@@ -1,17 +1,15 @@
 import express from "express";
 import http from "http";
-import dotenv from "dotenv";
-
-import cors from "cors";
 import cookieParser from "cookie-parser";
 import ApiError from "./utils/ApiError";
 
 import AuthRoutes from "./routes/auth.routes";
+import { Doctor } from "./models/doctor.model";
 
 const db = require("./config/db");
 const app = express();
 const bodyParser = require("body-parser");
-const session = require("express-session");
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -35,7 +33,13 @@ app.use("/auth", AuthRoutes);
 // );
 
 app.get("/test", async (req, res) => {
-  res.send("Hello World");
+  const doctor = await Doctor.create({
+    name: "test",
+    email: "doctor",
+    password: "password",
+  });
+
+  res.send(doctor);
 });
 
 app.use(
@@ -46,12 +50,11 @@ app.use(
 );
 
 app.all("*", (req, res, next) => {
-    //log the route and the method
-    console.log(req.method, req.url);
+  //log the route and the method
+  console.log(req.method, req.url);
   next(ApiError.notFound("Route not found"));
 });
 
 http.createServer(app).listen(process.env.HTTP_PORT || 80, () => {
   console.log(`Server is running on port ${process.env.HTTP_PORT || 80}`);
 });
-

@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 import { PrescriptionsRecord } from "./prescriptions.model";
 
 const {Schema, model} = mongoose;
@@ -13,8 +13,8 @@ const doctorSchema = new Schema({
         type: String,
         required: true
     },
-    hospital: {
-        type: String,
+    hospitalId: {
+        type: Schema.Types.ObjectId,
         required: true
     },
     contactNumber: {
