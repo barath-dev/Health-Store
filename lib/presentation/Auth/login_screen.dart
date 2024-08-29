@@ -5,6 +5,8 @@ import 'package:hospital/core/utils/size_utils.dart';
 import 'package:hospital/core/utils/snack_bar.dart';
 
 import 'package:hospital/data/auth_repository.dart';
+import 'package:hospital/presentation/Auth/verify_otp.dart';
+import 'package:hospital/widgets/custom_checkbox.dart';
 import 'package:hospital/widgets/custom_elevated_button.dart';
 import 'package:hospital/widgets/custom_textfield.dart';
 
@@ -33,6 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print("LoginScreen");
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -48,14 +51,6 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Align(
-              //   alignment: Alignment.center,
-              //   child: CustomImageView(
-              //     imagePath: ImageConstants.logo,
-              //     height: 151.v,
-              //     width: 125.h,
-              //   ),
-              // ),
               SizedBox(height: 41.v),
               const Align(
                 alignment: Alignment.centerLeft,
@@ -140,7 +135,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           _controller.text.trim(), countryCode)
                       .then((res) {
                     if (res) {
-                      Navigator.push();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              OtpVerificationPage(contactNumber),
+                        ),
+                      );
                       showSuccessBar();
                     }
                     return;
@@ -171,4 +172,14 @@ class _LoginScreenState extends State<LoginScreen> {
       },
     );
   }
+}
+
+class ContactNumber {
+  final String countryCode;
+  final String number;
+
+  ContactNumber({
+    required this.countryCode,
+    required this.number,
+  });
 }

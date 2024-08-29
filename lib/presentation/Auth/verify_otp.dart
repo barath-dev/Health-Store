@@ -4,6 +4,7 @@ import 'package:hospital/core/theme/theme_helper.dart';
 import 'package:hospital/core/utils/size_utils.dart';
 import 'package:hospital/core/utils/snack_bar.dart';
 import 'package:hospital/data/auth_repository.dart';
+import 'package:hospital/presentation/Auth/login_screen.dart';
 
 import '../../widgets/custom_elevated_button.dart';
 
@@ -48,7 +49,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: Text("OK"),
+            child: const Text("OK"),
           ),
         ],
       ),
@@ -61,7 +62,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
       isResendEnabled = false;
     });
 
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_start == 0) {
         setState(() {
           isResendEnabled = true;
@@ -104,14 +105,6 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Align(
-                alignment: Alignment.center,
-                child: CustomImageView(
-                  imagePath: ImageConstants.logo,
-                  height: 151.v,
-                  width: 125.h,
-                ),
-              ),
               SizedBox(height: 41.v),
               Align(
                 alignment: Alignment.centerLeft,
@@ -121,7 +114,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                 ),
               ),
               SizedBox(height: 15.v),
-              Text("A 4-digit code has been sent to"),
+              const Text("A 4-digit code has been sent to"),
               const SizedBox(height: 5),
               Row(children: [
                 Text(
@@ -131,8 +124,12 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                 const SizedBox(width: 5),
                 InkWell(
                   onTap: () => {
-                    NavigatorService.pushNamedAndRemoveUntil(
-                        AppRoutes.loginPage)
+                    Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                        builder: (context) => const LoginScreen(),
+                      ),
+                      (route) => false,
+                    )
                   },
                   child: const Icon(
                     Icons.edit_rounded,
@@ -199,14 +196,15 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                     widget.contactNumber.countryCode,
                   );
                   if (responseMsg != "failed") {
-                    if (responseMsg == "newUser") {
-                      NavigatorService.pushNamed(
-                        AppRoutes.userIntrestsPage,
+                    if (responseMsg == "success") {
+                      Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(
+                          builder: (context) => const LoginScreen(),
+                        ),
+                        (route) => false,
                       );
                     } else {
-                      NavigatorService.pushNamedAndRemoveUntil(
-                        AppRoutes.homePage,
-                      );
+                      _showDialog("Error", responseMsg);
                     }
                     showSuccessBar();
                   } else {

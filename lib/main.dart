@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:hospital/core/utils/shared_pref.dart';
 import 'package:hospital/firebase_options.dart';
 import 'package:hospital/presentation/Auth/login_screen.dart';
+import 'package:hospital/presentation/doctor/home_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await SharedPrefs().init(); // Initializes shared prefs instance.
+
   runApp(const MyApp());
 }
 
@@ -27,7 +30,7 @@ class MyApp extends StatelessWidget {
       // ignore: unnecessary_null_comparison
       home: SharedPrefs.getAuthToken() == null
           ? const LoginScreen()
-          : const HomeScreen(),
+          : const DocHomeScreen(),
     );
   }
 }

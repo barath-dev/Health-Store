@@ -1,4 +1,5 @@
-package com.example.hospital
+package com.example.healthstore
+
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -63,6 +63,6 @@ class DefaultFirebaseOptions {
     messagingSenderId: '211126723934',
     projectId: 'hospital-e4fc6',
     storageBucket: 'hospital-e4fc6.appspot.com',
-    iosBundleId: 'com.example.hospital',
+    iosBundleId: 'com.example.healthstore',
   );
 }
